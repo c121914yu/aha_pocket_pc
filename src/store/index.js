@@ -1,15 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+Vue.use( Vuex )
+export default new Vuex.Store( {
+	state: {
+		loading: false,
+	},
+	mutations: {
+		/**
+		 * 设置加载动画
+		 * @param {Object} type
+		 */
+		setLoading( state, type ) {
+			state.loading = type
+		}
+	},
+	actions: {},
+	modules: {}
 })

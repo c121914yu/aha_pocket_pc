@@ -1,19 +1,8 @@
-# ahapocket
+# Aha PC端
 
-## Project setup
-```
-npm install
-```
+## 1.0.0
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+* 主要内容
+	* 登录页
+	* 项目预览页面
+	* 文件阅读页码
