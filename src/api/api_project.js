@@ -6,6 +6,18 @@ import request from '../utils/request.js'
 export const api_getComps = (data) => request("/competition","GET")
 
 /**
+ * 分页加载项目
+ * @param {Number}  pageNum
+ * @param {Number}  pageSize
+ * @param {Number}  userId 根据用户ID筛选
+ * @param {Number}  compId 根据比赛ID筛选
+ * @param {Number}  awardLevel 根据获奖等级筛选
+ * @param {String}  sortBy 排序字段
+ * @param {String}  orderBy 排序方式
+ */
+export const getProjects = (params) => request("/project","GET",params)
+
+/**
  * 根据ID加载项目
  * @param {Number} projectId
  */

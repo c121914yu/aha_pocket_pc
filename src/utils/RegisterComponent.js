@@ -6,5 +6,11 @@ Vue.component("avatar",Avatar)
 import Tags from "@/components/aha-tags.vue"
 Vue.component("aha-tags",Tags)
 
-import Comments from "@/components/Comments.vue"
-Vue.component("aha-comments",Comments)
+import UserLevel from "@/components/aha-level.vue"
+Vue.component("user-level",UserLevel)
+
+import Paging from "@/components/aha-paging.vue"
+Vue.component("aha-paging",Paging)
+
+import Carousel from "@/components/aha-carousel.vue"
+Vue.component("aha-carousel",Carousel)

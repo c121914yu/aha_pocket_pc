@@ -9,7 +9,8 @@
 				'background-color': bgColor,
 				'color': Color,
 				'padding': padding,
-				'border': border
+				'border': border,
+				'border-radius': circle ? '22px' : '8px'
 			}"
 			class="tag"
 			v-for="(tag,index) in tags"
@@ -42,6 +43,10 @@ export default {
 		border: {
 			type: String,
 			default: "1px solid var(--boder-color1)"
+		},
+		circle: {
+			type: Boolean,
+			default: false
 		}
 	}
 }
@@ -54,5 +59,5 @@ export default {
 	align-items center
 	.tag
 		margin 0 5px 5px 0
-		border-radius 8px
+		font-size 14px
 </style>

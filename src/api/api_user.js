@@ -17,6 +17,11 @@ export const api_getMe = () => request("/userInfo/me","GET",{},{timeout: 2000})
 export const api_getUser = (userId) => request(`/user/${userId}`,"GET")
 
 /**
+ * 获取用户统计信息
+ */
+export const api_getStatisticsInfo = (userId) => request(`/statistics/${userId}`,"GET")
+
+/**
  * 获取用户简历信息
  */
 export const api_getUserResume = (userId) => request( `/resume/${userId}`,"GET")

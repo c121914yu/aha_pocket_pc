@@ -10,6 +10,8 @@ Vue.prototype.gData = {
 	gBUS: new Vue(),
 	/* 全部比赛 */
 	garr_competitions: [],
+	/* 轮播图 */
+	garr_carousel: [],
 	/* 获奖等级 */
 	garr_prizeLevels: [
 		{
@@ -205,4 +207,12 @@ Vue.prototype.gData = {
 			reg: /./
 		}, //其他
 	],
+	//用户等级类型
+	garr_userLevel: [
+		{label:"Aha萌新",src:"https://aha-public-1257019972.cos.ap-shanghai.myqcloud.com/icon/userLevel/1.png",totalContribPoint: 3000},
+		{label:"Aha进阶",src:"https://aha-public-1257019972.cos.ap-shanghai.myqcloud.com/icon/userLevel/2.png",totalContribPoint: 6000},
+		{label:"Aha小佬",src:"https://aha-public-1257019972.cos.ap-shanghai.myqcloud.com/icon/userLevel/3.png",totalContribPoint: 10000},
+		{label:"Aha大佬",src:"https://aha-public-1257019972.cos.ap-shanghai.myqcloud.com/icon/userLevel/4.png",totalContribPoint: 12000},
+		{label:"Aha巨佬",src:"https://aha-public-1257019972.cos.ap-shanghai.myqcloud.com/icon/userLevel/5.png",totalContribPoint: 1000000000},
+	]
 }

@@ -35,9 +35,11 @@ export default {
 				if (!valid) return
 				api_login(this.loginFrom)
 				.then(res => {
+					this.gShowSucess("登录成功！")
+					/* 设置全局个人信息 */
 					this.gData.gUserInfo = res.data.personalUserInfo
 					localStorage.setItem("token",res.data.token)
-					this.gShowSucess("登录成功！")
+					/* 恢复路径 */
 					this.$router.replace(this.gData.gLoginPath)
 					this.gData.gLoginPath = "/"
 					this.gData.gBUS.$emit("loginSuccess")

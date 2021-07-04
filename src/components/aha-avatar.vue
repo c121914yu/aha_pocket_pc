@@ -7,12 +7,13 @@
 		class="avatar"
 		:style="{
 			'width': `${size}px`,
+			'height': `${size}px`
 		}"
 		@click="readImg">
 		<img 
 			class="img" 
-			:start="{
-				'cursor': is_readed ? 'pointer' : 'default'
+			:style="{
+				'cursor': is_readed ? 'pointer' : 'default',
 			}"
 			:src="src || 'https://aha-public-1257019972.cos.ap-shanghai.myqcloud.com/icon/logo.png'">
 		</img>
@@ -52,6 +53,8 @@ export default {
 
 <style lang="stylus" scoped>
 .avatar
+	background-color var(--origin3)
+	border-radius 50%
 	display flex
 	align-items center
 	overflow hidden

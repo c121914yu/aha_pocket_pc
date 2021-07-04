@@ -96,19 +96,7 @@
 		</div>
 		<!-- 分页器 -->
 		<div class="paging">
-			<el-button 
-				icon="el-icon-arrow-left" 
-				size="mini"
-				:disabled="pageNum===1"
-				@click="pageChange(pageNum-1)">
-			</el-button>
-			<span class="pagenum">{{pageNum}}</span>
-			<el-button
-				icon="el-icon-arrow-right" 
-				size="mini"
-				:disabled="is_loadAll"
-				@click="pageChange(pageNum+1)">
-			</el-button>
+			<aha-paging :pageNum="pageNum" :is_loadAll="is_loadAll" @pageChange="loadComments"></aha-paging>
 		</div>
 	</div>
 </template>
@@ -157,23 +145,15 @@ export default{
 	},
 	methods:{
 		/**
-		 * 页码变化
-		 * @param {Number} page 当前页码数量
-		 */
-		pageChange(page)
-		{
-			this.pageNum = page
-			this.loadComments()
-		},
-		/**
 		 * 加载获取评论
 		 */
-		loadComments()
+		loadComments(pageNum=1)
 		{
+			this.pageNum = pageNum
 			this.is_loadAll = false
 			this.gShowLoading()
 			const params = {
-				pageNum: this.pageNum,
+				pageNum,
 				pageSize: this.pageSize,
 				projectId: this.projectId
 			}
@@ -244,7 +224,7 @@ export default{
 				this.commentScore = 5
 				this.commentTarget = 0
 				this.gShowSucess("评论成功")
-				this.pageChange(1)
+				this.loadComments(1)
 			})
 			.catch(err => this.gHideLoading())
 		},
@@ -266,11 +246,11 @@ export default{
 				this.gShowWarn("删除评论成功!")
 				/* 如果第一页，则刷新第一页 */
 				if(this.pageNum === 1) {
-					this.pageChange(1)
+					this.loadComments(1)
 				}
 				/* 非第一页，如果只有一条数据则返回上一页，否则更新当前页 */
 				else {
-					this.pageChange(this.arr_comments.length === 1 ? this.pageNum-1 : this.pageNum)
+					this.loadComments(this.arr_comments.length === 1 ? this.pageNum-1 : this.pageNum)
 				}
 			})
 		}
@@ -335,22 +315,9 @@ export default{
 					align-items center
 					small
 						margin-right 5px
-	/* 分页器 */
 	.no-comment
+		margin-top 5px
 		text-align center
 		color var(--gray2)
 		font-size 14px
-	.paging
-		margin 10px 0
-		display flex
-		align-items center
-		justify-content center
-		.pagenum
-			margin 0 10px
-			color var(--origin1)
-		.el-button
-			width 30px
-			height 30px
-			padding 0
-			background-color #f4f4f5
 </style>

@@ -21,6 +21,7 @@
 	--radius1 2px
 	--radius2 4px
 	--radius3 30px
+	--hover-transition .3s
 *
 	margin 0
 	padding 0
@@ -34,7 +35,7 @@ body
 	color var(--font2)
 /* 滚动条样式 */
 ::-webkit-scrollbar{
-	width:10px;
+	width:8px;
 	height: 7px;
 }
 ::-webkit-scrollbar-track{
@@ -46,7 +47,7 @@ body
 	border-radius:10px;
 }
 ::-webkit-scrollbar-thumb:hover{
-	background-color: rgba(64,158,255,0.8);
+	background-color: rgba(248,184,108,0.8);
 }
 
 /* 标题字体样式 */
@@ -93,12 +94,13 @@ a
 		background-color rgba(64,158,255,0.1)
 	&:active
 		transform scale(0.98)
+/* element预览图片关闭按键 */
 .el-icon-circle-close
 	color #FFFFFF
-/* 备注信息 */
-.remark
-	color var(--gray)
-	font-size 12px
+/* rich-text样式 */
+.rich-text
+	img
+		cursor pointer
 /* 全局弹窗样式 */
 .popup
 	z-index 1900

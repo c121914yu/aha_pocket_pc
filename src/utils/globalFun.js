@@ -13,6 +13,8 @@ import store from "@/store"
  * gSelectFile - 选择文件
  * gBinaryToBase64Img - 二进制转base64图片
  * gCopyText - 复制文本
+ * gParseRichText - 解析富文本
+ * gRichTextPreviewImg - 预览富文本图片
  */
 
 // Vue.prototype.$prompt = MessageBox.prompt
@@ -248,3 +250,30 @@ Vue.prototype.gCopyText = (copyText,msg="") => {
 	Vue.prototype.gShowSucess(msg,1000)
 }
 
+/**
+ * 解析富文本，生成目录，并给大标题添加id用于锚点定位
+ * @param {String}  richtext
+ */
+Vue.prototype.gParseRichText = (richtext) => {
+	let reg = /(?<=<h.>)(.|\n)+?(?=<\/h.>)/g
+	let catalogue = richtext.match(reg)
+	reg = /(?<=<h.).*?(?=>)/g
+	let i = 0
+	richtext = richtext.replace(reg,() => ` id='${i++}'`)
+	return {
+		text: richtext,
+		catalogue: catalogue || []
+	}
+}
+
+/**
+ * 点击富文本，如果是图片则打开预览
+ * @param {Object}  e 原生点击事件
+ */
+Vue.prototype.gRichTextPreviewImg = (e) => {
+	const dom = e.target
+	const url = dom.getAttribute("src")
+	if(url) {
+		store.commit("setPreviewImg",url)
+	}
+}

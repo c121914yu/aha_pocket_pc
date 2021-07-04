@@ -21,6 +21,7 @@
   --radius1: 2px;
   --radius2: 4px;
   --radius3: 30px;
+  --hover-transition: 0.3s;
 }
 * {
   margin: 0;
@@ -37,7 +38,7 @@ body {
 }
 /* 滚动条样式 */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
   height: 7px;
 }
 ::-webkit-scrollbar-track {
@@ -49,7 +50,7 @@ body {
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(64,158,255,0.8);
+  background-color: rgba(248,184,108,0.8);
 }
 /* 标题字体样式 */
 h1 {
@@ -107,13 +108,13 @@ a.hover-active:hover {
 .check-file:active {
   transform: scale(0.98);
 }
+/* element预览图片关闭按键 */
 .el-icon-circle-close {
   color: #fff;
 }
-/* 备注信息 */
-.remark {
-  color: var(--gray);
-  font-size: 12px;
+/* rich-text样式 */
+.rich-text img {
+  cursor: pointer;
 }
 /* 全局弹窗样式 */
 .popup {

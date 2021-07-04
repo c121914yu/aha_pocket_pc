@@ -139,8 +139,8 @@ export default{
 		.name
 			flex 1
 			padding 5px 10px
-			cursor pointer
 			&.hover-active:hover
+				cursor pointer
 				color var(--origin2)
 				text-decoration underline
 		.status

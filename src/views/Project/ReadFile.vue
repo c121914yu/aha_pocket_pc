@@ -4,7 +4,7 @@
 	path /project/file/:fileId
 -->
 <template>
-	<div class="file"></div>
+	<div class="read-file"></div>
 </template>
 
 <script>
@@ -26,7 +26,7 @@ export default{
 		.then(async (res) => {
 			const demo = COSDocPreviewSDK.config({
 				mode: 'normal',
-				mount: document.querySelector('.file'),
+				mount: document.querySelector('.read-file'),
 			    url: res.data.PreviewUrl,
 				commonOptions: {
 				    isShowTopArea: true, //隐藏顶部区域（头部和工具栏）。
@@ -64,8 +64,10 @@ export default{
 </script>
 
 <style lang="stylus" scoped>
-.file {
-	height calc(100vh - 50px)
-	overflow hidden
-}
+.read-file 
+	position fixed
+	top 0
+	left 0
+	right 0
+	bottom 0
 </style>

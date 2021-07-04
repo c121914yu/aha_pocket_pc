@@ -12,7 +12,8 @@ const loginRoute = [
 		path: '/login',
 		name: 'Login',
 		meta: {
-			login: false
+			login: false,
+			hideTop: true
 		},
 		component: () => import('../views/Login/Login.vue')
 	},
@@ -20,10 +21,18 @@ const loginRoute = [
 
 const projectRoute = [
 	{
+		path: '/projects',
+		name: 'Projects',
+		meta: {
+			login: true,
+		},
+		component: () => import('../views/Project/Projects.vue')
+	},
+	{
 		path: '/project/:projectId',
 		name: 'Project',
 		meta: {
-			login: true
+			login: true,
 		},
 		component: () => import('../views/Project/Project.vue')
 	},
@@ -31,7 +40,8 @@ const projectRoute = [
 		path: '/project/file/:fileId',
 		name: 'Project',
 		meta: {
-			login: true
+			login: true,
+			hideTop: true
 		},
 		component: () => import('../views/Project/ReadFile.vue')
 	}
@@ -44,7 +54,7 @@ const routes = [
 		path: '/',
 		name: 'Home',
 		meta: {
-			login: false
+			login: false,
 		},
 		component: () => import('../views/Aha-home.vue')
 	},

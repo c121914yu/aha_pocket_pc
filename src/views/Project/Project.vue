@@ -10,7 +10,7 @@
 			<div class="members">
 				<el-button v-if="is_anonymous" class="claim">点击认领该匿名项目</el-button>
 				<div v-else>
-					<h2>项目成员</h2>
+					<h3>项目成员</h3>
 					<router-link 
 						class="member hover-active"
 						v-for="member in arr_members"
@@ -25,9 +25,15 @@
 				</div>
 			</div>
 			<!-- 目录 -->
-			<div class="catalogue">
-				<catalogue></catalogue>
-			</div>
+			<ul v-if="arr_catalogue.length > 0" class="catalogue">
+				<h3>目录</h3>
+				<li
+					v-for="(item,index) in arr_catalogue"
+					:key="index"
+					@click="scrollToDOM(index)">
+					{{index+1}}. {{item}}
+				</li>
+			</ul>
 		</div>
 		<!-- 主要内容 -->
 		<div class="right">
@@ -57,11 +63,11 @@
 					</div>
 				</header>
 				<!-- 介绍 -->
-				<div class="rich-text" v-html="intro"></div>
+				<div class="rich-text" v-html="intro" @click="gRichTextPreviewImg"></div>
 				<!-- 分享 收藏 阅读量 -->
 				<footer>
 					<div class="item">
-						<i style="margin-right: 3px;" class="iconfont icon-readed"></i>
+						<i style="margin-right: 3px;" class="iconfont icon-eye"></i>
 						<span>{{read}}</span>
 					</div>
 					<div 
@@ -116,12 +122,10 @@
 <script>
 import { api_getProject,isCollectedProject,collectProject,cancleCollectProject } from "@/api/api_project.js"
 import { api_getPurchasedFiles } from "@/api/api_order.js"
-import Catalogue from "./components/Catalogue.vue"
 import FileCard from "./components/FileCard.vue"
 import Comments from "./components/Comments.vue"
 export default{
 	components: {
-		"catalogue": Catalogue,
 		"file-card": FileCard,
 		"project-comment": Comments
 	},
@@ -147,6 +151,7 @@ export default{
 			compName: '',
 			tags: '', // 标签
 			intro: '',
+			arr_catalogue: [], // 目录
 			/* 附件分类 */
 			arr_resources: [],
 			is_showFiles: false,
@@ -170,8 +175,12 @@ export default{
 			this.awardLevel = this.gData.garr_prizeLevels.find(item => item.value === res.data.awardLevel).label
 			this.awardTime = res.data.awardTime
 			this.compName = res.data.compName
-			this.intro = res.data.intro
 			this.arr_resources = res.data.resources
+			
+			/* 解析介绍文本，获取目录 */
+			const parse = this.gParseRichText(res.data.intro,true)
+			this.arr_catalogue = parse.catalogue
+			this.intro = parse.text
 			
 			/* 附件初始化 */
 			this.initFiles()
@@ -230,7 +239,7 @@ export default{
 				top: dom_comment.offsetTop, 
 				behavior: "smooth" 
 			})
-		},
+		}
 	}
 }
 </script>
@@ -264,6 +273,16 @@ export default{
 		.catalogue
 			max-height 40vh
 			border-radius 8px
+			padding 10px
+			background-color #FFFFFF
+			box-shadow var(--shadow1)
+			list-style none
+			li
+				padding 5px
+				border-radius 8px
+				cursor pointer
+				&:hover
+					background-color rgba(248,184,107,0.2)
 	.right
 		z-index 10
 		position relative
